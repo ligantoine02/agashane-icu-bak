@@ -1,0 +1,51 @@
+---
+import { getCollection, getEntries } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Tags from "../../components/Tags.astro";
+import Date from "../../components/Date.astro";
+import ImageCard from "../../components/ImageCard.astro";
+import Authors from "../../components/Authors.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { slug : post.slug }, props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const { title, authors, cover, summary, tags, updated } = post.data;
+const authorsEntries = await getEntries(authors);
+const tagsEntries = await getEntries(tags);
+---
+<Layout title={title}>
+  <main class="flex flex-col gap-24">
+    <header class="flex flex-col gap-8 md:gap-12">
+
+      <div class="w-full md:w-4/5 ml-auto px-8 md:px-12 flex flex-col gap-2 md:gap-4">
+        <!-- Date -->
+        <h1 class="text-xl md:text-4xl">{title}</h1>
+        <p class="text-md md:text-lg text-content2">{summary}</p>
+        <Tags tags={tagsEntries} />
+      </div>
+      <ImageCard src={cover} alt={title} classes="h-72 md:h-96 object-cover rounded-bl-3xl rounded-tr-3xl" />
+
+        <footer class="flex flex-row gap-8 justify-between px-8 md:px-12">
+          <div>
+            <p class="text-sm text-content2 mb-2">Author</p>
+            <Authors authors={authorsEntries} />
+          </div>
+          <div>
+            <p class="text-sm text-content2 mb-2">Published at</p>
+            <Date date={updated} />
+          </div>
+        </footer>
+    </header>
+
+    <article class="prose prose-sm md:prose-lg w-full md:w-2/3 ml-auto px-8 md:px-12">
+      <Content />
+    </article>
+  </main>
+</Layout>

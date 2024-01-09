@@ -1,0 +1,17 @@
+---
+import type { ImageMetadata } from "astro"
+import { Image } from "astro:assets";
+
+interface Props {
+	src: string;
+  alt: string;
+  classes?: string;
+};
+
+const { src, alt, classes } = Astro.props;
+const images = import.meta.glob<{ default: ImageMetadata}>("/src/content/posts/covers/**/*.{jpeg,jpg,png,gif}");
+const fullPath = `/src/content${src}`;
+if (!images[fullPath]) throw new Error("Invalid image path");
+---
+
+<Image src={images[fullPath]()} alt={alt} class={classes} />

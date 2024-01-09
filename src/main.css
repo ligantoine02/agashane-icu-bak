@@ -1,0 +1,16 @@
+@import "@fontsource-variable/azeret-mono";
+@import "@fontsource-variable/unbounded";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    font-family: "Unbounded Variable", "Azeret Mono Variable", monospace;
+  }
+
+  html {
+    font-family: "Azeret Mono Variable", monospace;
+  }
+}

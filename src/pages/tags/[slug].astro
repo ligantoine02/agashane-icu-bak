@@ -1,0 +1,33 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import Posts from "../../components/Posts.astro";
+
+export async function getStaticPaths () {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+  const uniqueTags = await getCollection("tags");
+
+  return uniqueTags.map(tag => {
+    let postsList: Array<CollectionEntry<"posts">> = [];
+    posts.forEach(post => {
+      post.data.tags.forEach(dt => {
+        if (dt.id === tag.id) postsList.push(post);
+      })
+    });
+
+    return {
+      params: { slug: tag.id },
+      props: { posts: postsList, element: tag }
+    }
+  })
+};
+
+const { slug } = Astro.params;
+const { element, posts } = Astro.props;
+
+---
+<Layout title={element.data.tag}>
+  <main>
+    <Posts posts={posts} />
+  </main>
+</Layout>

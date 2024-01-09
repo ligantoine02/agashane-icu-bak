@@ -1,0 +1,13 @@
+---
+import type {CollectionEntry} from "astro:content";
+
+interface Props {
+	authors: Array<CollectionEntry<"authors">>
+}
+
+const { authors } = Astro.props;
+---
+
+<p>
+{authors.map(author => (<a href={`/authors/${author.id}`}>{author.data.name}</a>))}
+</p>

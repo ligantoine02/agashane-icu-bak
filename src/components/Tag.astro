@@ -1,0 +1,14 @@
+---
+
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  tag: CollectionEntry<"tags">
+};
+
+const { tag } = Astro.props;
+
+---
+<a href={`/tags/${tag.id}`} class="badge badge-outline-primary">
+  {tag.data.tag}
+</a>
