@@ -11,5 +11,5 @@ export default {
 			},
 		},
 	},
-	plugins: [require("rippleui")],
+	plugins: [require("@tailwindcss/typography"), require("rippleui")],
 };

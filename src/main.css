@@ -1,5 +1,6 @@
 @import "@fontsource-variable/azeret-mono";
 @import "@fontsource-variable/unbounded";
+@import "@fontsource/dm-mono";
 
 @tailwind base;
 @tailwind components;
