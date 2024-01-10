@@ -1,0 +1,42 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content"; 
+import Layout from "../../layouts/Layout.astro";
+import Posts from "../../components/Posts.astro";
+import SectionMenu from "../../components/SectionMenu.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => !data.draft);
+  const authors = await getCollection("authors");
+
+  return authors.map(author => {
+    let postsList: Array<CollectionEntry<"posts">> = [];
+
+    posts.forEach(post => {
+      post.data.authors.forEach(da => {
+        if(da.id === author.id) postsList.push(post);
+      })
+    });
+
+    return {
+      params: { slug: author.id },
+      props: { posts: postsList, author: author }
+    }
+  });
+}
+
+const { slug } = Astro.params;
+const { posts, author } = Astro.props;
+
+---
+
+<Layout title={author.data.name}>
+  <main class="flex flex-col gap-12 md:gap-20">
+  <SectionMenu current="all" />
+  <section>
+  <h2 class="font-unbounded text-2xl">
+    Latests posts from <span class=" text-primary">{`@${author.data.name}`}</span>
+  </h2>
+  <Posts posts={posts} />
+  </section>
+  </main>
+</Layout>

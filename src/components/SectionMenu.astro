@@ -1,0 +1,32 @@
+---
+import { ArrowRight, Check } from "@phosphor-icons/react";
+import { getCollection } from "astro:content";
+
+interface Props {
+	current?: string;
+}
+
+const tags = await getCollection("tags");
+const { current } = Astro.props;
+---
+<div class="container mx-auto pt-6">
+<h2 class="font-unbounded text-2xl">
+  Tags
+</h2>
+<div class="flex flex-wrap gap-4 px-0 md:px-24 pt-6 md:pt-12">
+  <a href="/blog" class={`group btn ${current === "all" ? "btn-solid-primary" : "" }`}>
+    <span>All</span>
+    {current !== "all" ?
+    <span class="hidden group-hover:inline-flex ml-2"><ArrowRight /></span>
+    : <span class="ml-2"><Check /></span>
+    }
+  </a>
+  {tags.map(tag => <a href={`/tags/${tag.id}`} class={`group btn ${current === tag.id ? "btn-solid-primary" : ""}`}>
+    <span>{tag.data.tag}</span>
+    {current !== tag.id ?
+    <span class="hidden group-hover:inline-flex ml-2"><ArrowRight /></span>
+    : <span class="ml-2"><Check /></span>
+    }
+  </a>)}
+</div>
+</div>

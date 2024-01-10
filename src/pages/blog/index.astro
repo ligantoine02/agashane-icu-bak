@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+
+import SectionMenu from "../../components/SectionMenu.astro";
+import Layout from "../../layouts/Layout.astro";
+import Posts from "../../components/Posts.astro";
+
+const posts = await getCollection("posts", ({ data }) => !data.draft);
+---
+<Layout title="Blog">
+<main class="flex flex-col gap-12 md:gap-20">
+  <SectionMenu current="all" />
+
+  <section>
+  <h2 class="font-unbounded text-2xl">
+    Latests posts
+  </h2>
+  <Posts posts={posts} />
+  </section>
+</main>
+</Layout>

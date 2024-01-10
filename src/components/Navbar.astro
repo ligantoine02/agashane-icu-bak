@@ -1,0 +1,48 @@
+---
+import { ChatTeardrop, Files, HouseSimple, User,} from '@phosphor-icons/react';
+---
+<header class="navbar navbar-sticky rounded-xl container mx-auto backdrop-blur-lg bg-blue-1/70 my-2 md:my-4 py-2 md:py-4 px-4 md:px-12">
+    <div class="navbar-start">
+        <a href="/" class="navbar-item">Agashane</a>
+    </div>
+
+        <!-- Mobile menu -->
+    <div class="navbar-end lg:hidden">
+        <div class="dropdown-container">
+            <div class="dropdown">
+                <label class="btn flex cursor-pointer" tabindex="0">
+                    Menu
+                </label>
+                <div class="dropdown-menu dropdown-menu-bottom-left mt-2">
+                    <a class="dropdown-item flex flex-row items-center justify-between gap-2 text-sm text-slate-300 text-right" href="/"><span>Home</span><HouseSimple /></a>
+                    <a tabindex="-1" class="dropdown-item flex flex-row items-center justify-between gap-2 text-sm text-slate-300 text-right" href="/blog"><span>Blog</span><Files /></a>
+                    <a tabindex="-1" class="dropdown-item flex flex-row items-center justify-between gap-2 text-sm text-slate-300 text-right" href="/about"><span>About me</span> <User /></a>
+                    <a tabindex="-1" class="btn btn-primary mt-4 mb-2" href="/contact"><ChatTeardrop  /> <span class="ml-2">Get in touch</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Mobile menu -->
+
+    <!-- Desktop menu -->
+    <div class="navbar-end hidden lg:flex">
+        <a class="btn btn-ghost" href="/">
+          <HouseSimple />
+          <span class="ml-2">Home</span>
+        </a>
+        <a class="btn btn-ghost" href="/blog">
+          <Files />
+          <span class="ml-2">Blog</span>
+        </a>
+        <a class="btn btn-ghost" href="/about">
+          <User />
+          <span class="ml-2">About me</span>
+        </a>
+        <a class="btn btn-primary mx-4" href="/contact"> 
+            <ChatTeardrop />    
+            <span class="ml-2">Get in touch</span>
+        </a>
+    </div>
+    <!-- End Desktop menu -->
+
+</header>
