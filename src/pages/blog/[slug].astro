@@ -24,15 +24,15 @@ const tagsEntries = await getEntries(tags);
   <main class="flex flex-col gap-24">
     <header class="flex flex-col gap-8 md:gap-12">
 
-      <div class="w-full md:w-4/5 ml-auto px-8 md:px-12 flex flex-col gap-2 md:gap-4">
+      <div class="w-full md:w-4/5 ml-auto px-4 md:px-12 flex flex-col gap-2 md:gap-4">
         <!-- Date -->
         <h1 class="text-xl md:text-4xl">{title}</h1>
         <p class="text-md md:text-lg text-content2">{summary}</p>
         <Tags tags={tagsEntries} />
       </div>
-      <ImageCard src={cover} alt={title} classes="h-72 md:h-96 object-cover rounded-bl-3xl rounded-tr-3xl" />
+      <ImageCard src={cover} alt={title} classes="h-72 md:h-[32rem] object-cover rounded-bl-3xl rounded-tr-3xl" />
 
-        <footer class="flex flex-row gap-8 justify-between px-8 md:px-12">
+        <footer class="flex flex-row gap-8 justify-between px-4 md:px-12">
           <div>
             <p class="text-sm text-content2 mb-2">Author</p>
             <Authors authors={authorsEntries} />
@@ -45,7 +45,7 @@ const tagsEntries = await getEntries(tags);
     </header>
 
     <section class="w-full md:w-2/3 ml-auto">
-    <article class="prose prose-slate prose-sm md:prose-base dark:prose-invert max-w-none ml-auto px-8 md:px-12 prose-img:rounded-xl prose-p:leading-loose prose-pre:p-8">
+    <article class="prose prose-slate prose-sm md:prose-base dark:prose-invert max-w-none ml-auto px-4 md:px-12 prose-img:rounded-xl prose-p:leading-loose prose-pre:p-8 prose-headings:font-unbounded prose-a:link-primary">
       <Content />
     </article>
     </section>

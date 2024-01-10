@@ -9,5 +9,5 @@ const { authors } = Astro.props;
 ---
 
 <p>
-{authors.map(author => (<a href={`/authors/${author.id}`}>{author.data.name}</a>))}
+{authors.map(author => (<a href={`/authors/${author.id}`} class="link link-primary hover:link-underline">{author.data.name}</a>))}
 </p>

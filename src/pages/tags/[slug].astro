@@ -2,6 +2,7 @@
 import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import Posts from "../../components/Posts.astro";
+import SectionMenu from "../../components/SectionMenu.astro";
 
 export async function getStaticPaths () {
   const posts = await getCollection("posts", ({ data }) => !data.draft);
@@ -27,7 +28,13 @@ const { element, posts } = Astro.props;
 
 ---
 <Layout title={element.data.tag}>
-  <main>
-    <Posts posts={posts} />
+  <main class="flex flex-col gap-12 md-gap-20">
+    <SectionMenu current={slug}  />
+  <section>
+  <h2 class="font-unbounded text-2xl">
+    Latests posts in <span class="text-primary hover:cursor-pointer">{`#${element.data.tag}`}</span>
+  </h2>
+  <Posts posts={posts} />
+  </section>
   </main>
 </Layout>

@@ -3,6 +3,7 @@ import { getEntries, type CollectionEntry } from "astro:content";
 
 import Tags from "./Tags.astro";
 import ImageCard from "./ImageCard.astro";
+import { ArrowRight } from "@phosphor-icons/react";
 
 interface Props {
   post: CollectionEntry<"posts">;
@@ -25,8 +26,9 @@ const {title, cover, summary} = post.data;
             <a href={`/blog/${slug}`}>
                 <p class="text-gray-7 text-sm md:text-md line-clamp-3">{summary}</p>
             </a>
-            <a href={`/blog/${slug}`} class="btn btn-primary self-start mt-4">
-              Read more
+            <a href={`/blog/${slug}`} class="group btn btn-primary self-start mt-4">
+              <span class="mr-2">Read more</span>
+                <span class="hidden group-hover:inline-flex"><ArrowRight></span>
             </a>
         </div>
     </article>

@@ -1,4 +1,5 @@
 ---
+import Navbar from "../components/Navbar.astro";
 import "../main.css";
 
 interface Props {
@@ -19,7 +20,8 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<main class="container p-8 md:p-12 mx-auto">
+		<main class="container px-8 py-20 md:py-32 md:px-12 mx-auto">
+			<Navbar />
 			<slot />
 		</main>
 	</body>
